@@ -103,6 +103,11 @@ public class PlayerController : MonoBehaviour
 
     void OnUse()
     {
+        if (activeArm == null)
+        {
+            Debug.Log("nqmash ruki brat");
+            return;
+        }
         activeArm.GetComponent<BaseArm>().UseArm();
     }
 }

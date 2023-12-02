@@ -212,7 +212,7 @@ MonoBehaviour:
   movespeed: 500
   movedirection: {x: 0, y: 0, z: 0}
   camera: {fileID: 0}
-  lArmSocket: {fileID: 6358955313620981073}
+  lArmSocket: {fileID: 1394039528049449258}
   insLArmSocket: {fileID: 0}
   rArmSocket: {fileID: 2737919217649180278}
   insRArmSocket: {fileID: 0}

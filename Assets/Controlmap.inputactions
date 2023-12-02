@@ -118,6 +118,17 @@
                 },
                 {
                     "name": "",
+                    "id": "4b0a2655-b727-41f0-8405-fff13f2dd143",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "dad5eeee-f786-4fdf-9bc9-69f7223bed69",
                     "path": "<Keyboard>/q",
                     "interactions": "",
@@ -129,8 +140,30 @@
                 },
                 {
                     "name": "",
+                    "id": "5f7ef92c-5770-4f80-b803-fe5e8be8ef61",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attatch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "42500824-1cba-4de2-a3e5-c69a31cde6e1",
                     "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Use",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0d54a909-6345-46f4-89a4-3f68796855ce",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -206,8 +239,30 @@
                 },
                 {
                     "name": "",
+                    "id": "f6d1e6cc-8901-4477-b4e7-3bf4660c784f",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SecondaryMove",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "d2994800-2375-4238-997b-9887aecb9300",
                     "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Detach",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f5a81123-510f-4d7f-92cf-00ef380d611a",
+                    "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

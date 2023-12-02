@@ -40,7 +40,7 @@ public class ArmCrane : BaseArm
                 if (hitCollider.CompareTag("Arm"))
                 {
                     GrabObject(hitCollider.gameObject);
-                    Debug.Log("Pickup crate");
+                    Debug.Log("Pickup arm");
                     hitCollider.gameObject.GetComponent<Collider>().isTrigger = true;
                 }
             }
@@ -63,7 +63,7 @@ public class ArmCrane : BaseArm
         if (!isAnchored)
         {
             moveDir = input;
-            // moveDir = new Vector2(moveDir.x, -moveDir.y);
+             moveDir = new Vector2(-moveDir.y, moveDir.x);
         }
     }
 
