@@ -297,7 +297,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf658b0694e20a24790ce1b241ec39e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movespeed: 500
+  MoveSpeed: 500
+  MaxLinearVelocity: 4
   movedirection: {x: 0, y: 0, z: 0}
   camera: {fileID: 0}
   lArmSocket: {fileID: 1394039528049449258}

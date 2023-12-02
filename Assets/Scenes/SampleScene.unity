@@ -2466,9 +2466,19 @@ PrefabInstance:
       objectReference: {fileID: 330585543}
     - target: {fileID: 843280992177800956, guid: 4ea9114ed900eb544b8451992368ddb2,
         type: 3}
+      propertyPath: MoveSpeed
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 843280992177800956, guid: 4ea9114ed900eb544b8451992368ddb2,
+        type: 3}
       propertyPath: rArmSocket
       value: 
       objectReference: {fileID: 579232215}
+    - target: {fileID: 843280992177800956, guid: 4ea9114ed900eb544b8451992368ddb2,
+        type: 3}
+      propertyPath: MaxLinearVelocity
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2552174126568744935, guid: 4ea9114ed900eb544b8451992368ddb2,
         type: 3}
       propertyPath: m_Name

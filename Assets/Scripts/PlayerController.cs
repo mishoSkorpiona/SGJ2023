@@ -37,6 +37,13 @@ public class PlayerController : MonoBehaviour
         Rigidbody player = this.GetComponent<Rigidbody>();
         player.AddForce(movedirection * MoveSpeed * Time.deltaTime, ForceMode.Acceleration);
 
+        float minVelocity = 2.0f;
+        if (player.velocity.magnitude < minVelocity)
+        {
+            Debug.Log("min velocity correction!");
+            player.velocity = movedirection * minVelocity;
+        }
+
         transform.forward = Vector3.RotateTowards(transform.forward, movedirection, 0.03f, 0.0f);
     }
 
