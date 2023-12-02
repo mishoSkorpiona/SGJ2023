@@ -75,7 +75,12 @@ public class PlayerController : MonoBehaviour
             {
                 BaseArm baseArm = arm.GetComponent<BaseArm>();
                 if (baseArm)
+                {
                     baseArm.isTheArmInUse = false;
+
+                    baseArm.GetComponent<Collider>().isTrigger = false;
+                    baseArm.GetComponent<Rigidbody>().isKinematic = false;
+                }
             }
         }
 
@@ -121,6 +126,10 @@ public class PlayerController : MonoBehaviour
             newArm.transform.parent = freeSocket.transform;
             newArm.transform.localPosition = Vector3.zero;
             newArm.transform.localRotation = Quaternion.Euler(Vector3.zero);
+
+            newArm.GetComponent<Collider>().isTrigger = true;
+            newArm.GetComponent<Rigidbody>().isKinematic = true;
+
             activeArm = newArm;
 
             BaseArm baseArm = newArm.GetComponent<BaseArm>();

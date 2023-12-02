@@ -36,7 +36,6 @@ public class ArmCrane : BaseArm
                 {
                     GrabObject(hitCollider.gameObject);
                     Debug.Log("Pickup crate");
-                    hitCollider.gameObject.GetComponent<Collider>().isTrigger = true;
                     break;
                 }
                 
@@ -49,7 +48,6 @@ public class ArmCrane : BaseArm
                     
                     GrabObject(hitCollider.gameObject);
                     Debug.Log("Pickup arm");
-                    hitCollider.gameObject.GetComponent<Collider>().isTrigger = true;
                     break;
                 }
             }
@@ -74,9 +72,30 @@ public class ArmCrane : BaseArm
     public virtual void GrabObject(GameObject obj)
     {
         heldObject = obj;
-        heldObject.transform.SetParent(craneHookPoint.transform);
+
+        if (heldObject.CompareTag("Arm"))
+        {
+            heldObject.GetComponent<Collider>().isTrigger = true;
+        }
         heldObject.GetComponent<Rigidbody>().isKinematic = true;
-        gameObject.GetComponent<Collider>().isTrigger = true;
+
+        heldObject.transform.SetParent(craneHookPoint.transform, true);
+    }
+
+    public virtual void DropObject()
+    {
+        if (!heldObject)
+            return;
+
+        if (heldObject.CompareTag("Arm"))
+        {
+            heldObject.GetComponent<Collider>().isTrigger = false;
+        }
+        heldObject.GetComponent<Rigidbody>().isKinematic = false;
+
+        heldObject.transform.SetParent(null);
+        
+        heldObject = null;
     }
 
     public override void SecondaryMoveDir(Vector2 input)

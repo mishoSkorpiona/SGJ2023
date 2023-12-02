@@ -12,19 +12,9 @@ public abstract class BaseArm : MonoBehaviour, IArm
 
     public virtual void GrabObject(GameObject obj)
     {
-        heldObject = obj;
-        heldObject.transform.SetParent(transform);
-        heldObject.GetComponent<Rigidbody>().isKinematic = true;
     }
 
     public virtual void DropObject()
     {
-        if (heldObject != null)
-        {
-            heldObject.transform.SetParent(null);
-            heldObject.GetComponent<Rigidbody>().isKinematic = false;
-            heldObject.GetComponent<Collider>().isTrigger = false;
-            heldObject = null;
-        }
     }
 }
