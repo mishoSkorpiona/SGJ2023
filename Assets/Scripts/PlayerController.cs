@@ -55,12 +55,31 @@ public class PlayerController : MonoBehaviour
             {
                 Detach(lArmSocket);
                 Detach(rArmSocket);
+                break;
             }
         }
     }
 
     void Detach(GameObject Socket)
     {
+        if (!Socket)
+            return;
+
+        int childCount = Socket.transform.childCount;
+        if (childCount <= 0)
+            return;
+
+        for (int i = 0; i < childCount; ++i)
+        {
+            GameObject arm = Socket.transform.GetChild(i).gameObject;
+            if (arm)
+            {
+                BaseArm baseArm = arm.GetComponent<BaseArm>();
+                if (baseArm)
+                    baseArm.isTheArmInUse = false;
+            }
+        }
+
         Instantiate(attachParticle, Socket.transform);
         Debug.Log("detach arm");
         Socket.transform.DetachChildren();

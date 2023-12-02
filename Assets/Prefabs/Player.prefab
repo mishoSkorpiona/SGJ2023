@@ -215,7 +215,7 @@ MonoBehaviour:
   movedirection: {x: 0, y: 0, z: 0}
   camera: {fileID: 0}
   lArmSocket: {fileID: 1394039528049449258}
-  rArmSocket: {fileID: 2737919217649180278}
+  rArmSocket: {fileID: 8468379733275806163}
   inADetachZone: 0
   attachParticle: {fileID: 5878425692960647402, guid: 892f6490543e0d3499e813bff951286a,
     type: 3}
