@@ -16,7 +16,7 @@ public class ArmCrane : BaseArm
     void Update()
     {
         Move();
-        ajustArm();
+        AdjustArm();
     }
 
     public override void UseArm()
@@ -32,12 +32,12 @@ public class ArmCrane : BaseArm
             Collider[] hitColliders = Physics.OverlapSphere(craneHookPoint.transform.position, 0.4f);
             foreach (var hitCollider in hitColliders)
             {
-                
                 if (hitCollider.CompareTag("Crate"))
                 {
                     GrabObject(hitCollider.gameObject);
                     Debug.Log("Pickup crate");
                     hitCollider.gameObject.GetComponent<Collider>().isTrigger = true;
+                    break;
                 }
                 
                 if (hitCollider.CompareTag("Arm"))
@@ -45,28 +45,28 @@ public class ArmCrane : BaseArm
                     Debug.Log("tries to Pickup arm");
                     
                     if (hitCollider.GetComponent<BaseArm>().isTheArmInUse)
-                        return;
+                        continue;
                     
                     GrabObject(hitCollider.gameObject);
                     Debug.Log("Pickup arm");
                     hitCollider.gameObject.GetComponent<Collider>().isTrigger = true;
+                    break;
                 }
             }
         }
-
     }
 
-    void ajustArm()
+    void AdjustArm()
     {
-        if (!isArmLeft)
-        {
-            rightModel.SetActive(true);
-            leftModel.SetActive(false);
-        }
-        else
+        if (isArmLeft)
         {
             rightModel.SetActive(false);
             leftModel.SetActive(true);
+        }
+        else
+        {
+            rightModel.SetActive(true);
+            leftModel.SetActive(false);
         }
     }
 

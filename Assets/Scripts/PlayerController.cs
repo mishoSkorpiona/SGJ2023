@@ -53,21 +53,20 @@ public class PlayerController : MonoBehaviour
         {
             if (hitCollider.CompareTag("DetachZone"))
             {
-                Detach(lArmSocket);
-                Detach(rArmSocket);
-                break;
+                if (Detach(lArmSocket) || Detach(rArmSocket))
+                    break;
             }
         }
     }
 
-    void Detach(GameObject Socket)
+    bool Detach(GameObject Socket)
     {
         if (!Socket)
-            return;
+            return false;
 
         int childCount = Socket.transform.childCount;
         if (childCount <= 0)
-            return;
+            return false;
 
         for (int i = 0; i < childCount; ++i)
         {
@@ -83,6 +82,7 @@ public class PlayerController : MonoBehaviour
         Instantiate(attachParticle, Socket.transform);
         Debug.Log("detach arm");
         Socket.transform.DetachChildren();
+        return true;
     }
 
     void OnAttatch()
@@ -92,28 +92,54 @@ public class PlayerController : MonoBehaviour
     
     void AttachArm()
     {
-        
+        GameObject freeSocket = null;
+
+        if (lArmSocket && lArmSocket.transform.childCount <= 0)
+        {
+            freeSocket = lArmSocket;
+        }
+        else if (rArmSocket && rArmSocket.transform.childCount <= 0)
+        {
+            freeSocket = rArmSocket;
+        }
+
+        if (!freeSocket)
+            return;
+
         Collider[] hitColliders = Physics.OverlapSphere(transform.position+ transform.forward, 1);
         foreach (var hitCollider in hitColliders)
-        { 
-            
-            if (hitCollider.CompareTag("Arm"))
+        {
+            if (!hitCollider.CompareTag("Arm"))
+                continue;
+
+            if (hitCollider.GetComponent<BaseArm>().isTheArmInUse)
+                continue;
+
+            Instantiate(attachParticle, freeSocket.transform);
+
+            var newArm = hitCollider.gameObject;
+            newArm.transform.parent = freeSocket.transform;
+            newArm.transform.localPosition = Vector3.zero;
+            newArm.transform.localRotation = Quaternion.Euler(Vector3.zero);
+            activeArm = newArm;
+
+            BaseArm baseArm = newArm.GetComponent<BaseArm>();
+            baseArm.isTheArmInUse = true;
+
+            if (baseArm.isArmLeft)
             {
-                if (hitCollider.GetComponent<BaseArm>().isTheArmInUse)
-                    return;
-                
-                Instantiate(attachParticle, lArmSocket.transform);
-                
-                var newArm = hitCollider.gameObject;
-                newArm.transform.parent = lArmSocket.transform;
-                newArm.transform.localPosition = Vector3.zero;
-                newArm.transform.localRotation = Quaternion.Euler(Vector3.zero);               
-                activeArm = newArm;
-                newArm.GetComponent<BaseArm>().isTheArmInUse = true;
-                Debug.Log("We got an active arm ");
-                
+                if (freeSocket == rArmSocket)
+                    baseArm.isArmLeft = false;
             }
-        }    
+            else // right arm
+            {
+                if (freeSocket == lArmSocket)
+                    baseArm.isArmLeft = true;
+            }
+
+            Debug.Log("We got an active arm ");
+            break;
+        }
     }
 
     void OnMove(InputValue input)
