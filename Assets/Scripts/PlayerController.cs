@@ -58,7 +58,12 @@ public class PlayerController : MonoBehaviour
         {
             if (hitCollider.CompareTag("DetachZone"))
             {
+                Instantiate(attachParticle, lArmSocket.transform);
                 Debug.Log("detach arm");
+                
+                // lArmSocket.transform.GetChild(0).GetComponent<BaseArm>().isTheArmInUse = false;
+                
+                
                 lArmSocket.transform.DetachChildren();
             }
         }
@@ -78,12 +83,15 @@ public class PlayerController : MonoBehaviour
             
             if (hitCollider.CompareTag("Arm"))
             {
+                if (hitCollider.GetComponent<BaseArm>().isTheArmInUse)
+                    return;
                 Instantiate(attachParticle, lArmSocket.transform);
                 var newArm = hitCollider.gameObject;
                 newArm.transform.parent = lArmSocket.transform;
                 newArm.transform.localPosition = Vector3.zero;
                 newArm.transform.localRotation = Quaternion.Euler(Vector3.zero);               
                 activeArm = newArm;
+                newArm.GetComponent<BaseArm>().isTheArmInUse = true;
                 Debug.Log("We got an active arm ");
                 
             }

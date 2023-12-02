@@ -6,30 +6,33 @@ public class ArmCrane : BaseArm
     [SerializeField] private float moveSpeed = 5f;
     private Vector2 moveDir;
     [SerializeField] private float armRange = 3;
-    [SerializeField] private Transform anchorPoint; // The point where the crane anchors to the pipe
-    [SerializeField] private float pullSpeed = 2f; // Speed at which the player is pulled up
     [SerializeField] private GameObject craneHookPoint;
-    [SerializeField]private bool isAnchored = false;
+    [SerializeField] private bool isAnchored = false;
+
+    [SerializeField] private GameObject leftModel;
+    [SerializeField] private GameObject rightModel;
 
 
     void Update()
     {
         Move();
+        ajustArm();
     }
 
     public override void UseArm()
     {
-        // Implementation for using the crane arm
         Debug.Log("Using Crane Arm");
         if (heldObject != null)
         {
+            Debug.Log("dropobject");
             DropObject();
         }
         else
         {
-            Collider[] hitColliders = Physics.OverlapSphere(craneHookPoint.transform.position, 0.2f);
+            Collider[] hitColliders = Physics.OverlapSphere(craneHookPoint.transform.position, 0.4f);
             foreach (var hitCollider in hitColliders)
             {
+                
                 if (hitCollider.CompareTag("Crate"))
                 {
                     GrabObject(hitCollider.gameObject);
@@ -39,6 +42,11 @@ public class ArmCrane : BaseArm
                 
                 if (hitCollider.CompareTag("Arm"))
                 {
+                    Debug.Log("tries to Pickup arm");
+                    
+                    if (hitCollider.GetComponent<BaseArm>().isTheArmInUse)
+                        return;
+                    
                     GrabObject(hitCollider.gameObject);
                     Debug.Log("Pickup arm");
                     hitCollider.gameObject.GetComponent<Collider>().isTrigger = true;
@@ -46,6 +54,20 @@ public class ArmCrane : BaseArm
             }
         }
 
+    }
+
+    void ajustArm()
+    {
+        if (!isArmLeft)
+        {
+            rightModel.SetActive(true);
+            leftModel.SetActive(false);
+        }
+        else
+        {
+            rightModel.SetActive(false);
+            leftModel.SetActive(true);
+        }
     }
 
 
@@ -74,8 +96,10 @@ public class ArmCrane : BaseArm
         // add arm range & constrains 
         if (craneHookPoint.transform.localPosition.magnitude < armRange)
             craneHookPoint.transform.Translate(moveDir * moveSpeed * Time.deltaTime);
-        if (moveDir.magnitude < 0.1f)
+        if (moveDir.magnitude < 0.05f)
             craneHookPoint.transform.localPosition *= 0.95f;
+        if (craneHookPoint.transform.localPosition.y < -0.5f)
+            craneHookPoint.transform.localPosition.Set(0,-0.5f,0);
     }
 
     private void DetectObjectInRange()
