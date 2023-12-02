@@ -22,8 +22,12 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (movedirection.sqrMagnitude < 0.01f)
+            return;
+
         Rigidbody player = this.GetComponent<Rigidbody>();
         player.AddForce(movedirection * movespeed * Time.deltaTime, ForceMode.Acceleration);
+        this.transform.forward = movedirection;
     }
 
     void OnDetachArm()
@@ -53,5 +57,10 @@ public class PlayerController : MonoBehaviour
         movedirection = forward * inputVector.y + right * inputVector.x;
         movedirection.y = 0; // Ensure no vertical movement
         movedirection.Normalize(); // Normalize to prevent faster movement diagonally
+    }
+
+    void OnUse()
+    {
+        Debug.Log("");
     }
 }
