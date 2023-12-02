@@ -8,6 +8,7 @@ TagManager:
   - Arm
   - Crate
   - DetachZone
+  - Enemy
   layers:
   - Default
   - TransparentFX
