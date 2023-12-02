@@ -15,7 +15,7 @@ public class ArmCrane : BaseArm
 
     void Update()
     {
-        Move();
+        //Move();
         ajustArm();
     }
 
