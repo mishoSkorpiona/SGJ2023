@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector3 movedirection;
     [SerializeField] private GameObject camera;
 
-    [SerializeField] private Transform lArmSocket;
+    [SerializeField] private GameObject lArmSocket;
     [SerializeField] private GameObject insLArmSocket;
 
     [SerializeField] private Transform rArmSocket;
@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private GameObject attachParticle;
 
-    [SerializeField ]private BaseArm activeArm; // Assuming you have a BaseArm class
+    [SerializeField ]private GameObject activeArm; // Assuming you have a BaseArm class
 
     private void Start()
     {
@@ -48,14 +48,19 @@ public class PlayerController : MonoBehaviour
     {
         var secondaryMoveDirection = input.Get<Vector2>();
         if (activeArm != null)
-            activeArm.SecondaryMoveDir(secondaryMoveDirection);
+            activeArm.GetComponent<BaseArm>().SecondaryMoveDir(secondaryMoveDirection);
     }
     
-    void OnDetachArm()
+    void OnDetach()
     {
-        if (inADetachZone && activeArm != null)
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 1);
+        foreach (var hitCollider in hitColliders)
         {
-            //detatch arm 
+            if (hitCollider.CompareTag("DetachZone"))
+            {
+                Debug.Log("detach arm");
+                lArmSocket.transform.DetachChildren();
+            }
         }
     }
 
@@ -70,20 +75,17 @@ public class PlayerController : MonoBehaviour
         Collider[] hitColliders = Physics.OverlapSphere(transform.position+ transform.forward, 1);
         foreach (var hitCollider in hitColliders)
         { 
-            if(hitCollider.CompareTag("Arm")) 
-                 Debug.Log("sees an arm");
-            if (insLArmSocket == null)
+            
+            if (hitCollider.CompareTag("Arm"))
             {
                 Instantiate(attachParticle, lArmSocket.transform);
-                insLArmSocket = hitCollider.gameObject;
-                insLArmSocket.transform.parent = lArmSocket.transform;
-                insLArmSocket.transform.localPosition= Vector3.zero;
+                var newArm = hitCollider.gameObject;
+                newArm.transform.parent = lArmSocket.transform;
+                newArm.transform.localPosition = Vector3.zero;
+                newArm.transform.localRotation = Quaternion.Euler(Vector3.zero);               
+                activeArm = newArm;
+                Debug.Log("We got an active arm ");
                 
-                if (insLArmSocket != null)
-                {
-                    activeArm = insLArmSocket.GetComponent<BaseArm>();
-                    Debug.Log("We got an active arm ");
-                }
             }
         }    
     }
@@ -101,6 +103,6 @@ public class PlayerController : MonoBehaviour
 
     void OnUse()
     {
-        Debug.Log("");
+        activeArm.GetComponent<BaseArm>().UseArm();
     }
 }

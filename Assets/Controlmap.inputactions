@@ -33,6 +33,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Detach",
+                    "type": "Button",
+                    "id": "15f5146c-bd80-4e51-b7e7-9ec704ad7611",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Use",
                     "type": "Button",
                     "id": "fc91a690-acfb-4e6f-9dca-7fb7697add36",
@@ -194,6 +203,17 @@
                     "action": "SecondaryMove",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "d2994800-2375-4238-997b-9887aecb9300",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Detach",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

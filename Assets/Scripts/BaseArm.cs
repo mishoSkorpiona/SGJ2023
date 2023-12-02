@@ -21,6 +21,7 @@ public abstract class BaseArm : MonoBehaviour, IArm
         {
             heldObject.transform.SetParent(null);
             heldObject.GetComponent<Rigidbody>().isKinematic = false;
+            heldObject.GetComponent<Collider>().isTrigger = false;
             heldObject = null;
         }
     }

@@ -21,6 +21,40 @@ public class ArmCrane : BaseArm
     {
         // Implementation for using the crane arm
         Debug.Log("Using Crane Arm");
+        if (heldObject != null)
+        {
+            DropObject();
+        }
+        else
+        {
+            Collider[] hitColliders = Physics.OverlapSphere(craneHookPoint.transform.position, 0.2f);
+            foreach (var hitCollider in hitColliders)
+            {
+                if (hitCollider.CompareTag("Crate"))
+                {
+                    GrabObject(hitCollider.gameObject);
+                    Debug.Log("Pickup crate");
+                    hitCollider.gameObject.GetComponent<Collider>().isTrigger = true;
+                }
+                
+                if (hitCollider.CompareTag("Arm"))
+                {
+                    GrabObject(hitCollider.gameObject);
+                    Debug.Log("Pickup crate");
+                    hitCollider.gameObject.GetComponent<Collider>().isTrigger = true;
+                }
+            }
+        }
+
+    }
+
+
+    public virtual void GrabObject(GameObject obj)
+    {
+        heldObject = obj;
+        heldObject.transform.SetParent(craneHookPoint.transform);
+        heldObject.GetComponent<Rigidbody>().isKinematic = true;
+        gameObject.GetComponent<Collider>().isTrigger = true;
     }
 
     public override void SecondaryMoveDir(Vector2 input)
@@ -29,6 +63,7 @@ public class ArmCrane : BaseArm
         if (!isAnchored)
         {
             moveDir = input;
+            // moveDir = new Vector2(moveDir.x, -moveDir.y);
         }
     }
 
