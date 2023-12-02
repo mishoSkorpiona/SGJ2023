@@ -9,7 +9,7 @@ public class ArmProto : BaseArm
         Debug.Log("Using Main Arm");
     }
 
-    public override void OnSecondaryMove(InputValue input)
+    public override void SecondaryMoveDir(Vector2 input)
     {
         // Implementation for secondary move with the main arm
     }

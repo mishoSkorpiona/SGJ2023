@@ -14,11 +14,11 @@ public class ArmHammer : BaseArm
         Swing();
     }
 
-    public override void OnSecondaryMove(InputValue input)
+    public override void SecondaryMoveDir(Vector2 input)
     {
         // Implementation for secondary move with the hammer
         // For example, adjust the swing force based on input
-        float inputStrength = input.Get<Vector2>().magnitude;
+        float inputStrength = input.magnitude;
         swingForce = inputStrength * 10f; // Adjust as needed
     }
 
