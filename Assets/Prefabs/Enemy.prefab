@@ -589,7 +589,7 @@ Transform:
   m_GameObject: {fileID: 5636060460749403445}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0.4, z: 0.12}
+  m_LocalPosition: {x: 0.5, y: 0.4, z: 0.12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -620,7 +620,7 @@ Transform:
   m_GameObject: {fileID: 6126735074424662641}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.4, z: 0.12}
+  m_LocalPosition: {x: -0.5, y: 0.4, z: 0.12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -636,12 +636,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5280784409470139364}
   - component: {fileID: 2767371719893114305}
-  - component: {fileID: 4941559930717576638}
   - component: {fileID: 5308163954050588895}
-  - component: {fileID: 5866937353580425102}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Player
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -690,27 +688,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4941559930717576638
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7127272735099680935}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf658b0694e20a24790ce1b241ec39e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movespeed: 500
-  movedirection: {x: 0, y: 0, z: 0}
-  camera: {fileID: 0}
-  lArmSocket: {fileID: 6126735074424662641}
-  rArmSocket: {fileID: 7770098658972620891}
-  inADetachZone: 0
-  attachParticle: {fileID: 5878425692960647402, guid: 892f6490543e0d3499e813bff951286a,
-    type: 3}
-  activeArm: {fileID: 0}
 --- !u!54 &5308163954050588895
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -738,37 +715,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &5866937353580425102
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7127272735099680935}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: b7983896c51e62c4c91bfc71151a19d8,
-    type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Action map
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!1 &7730537904773094631
 GameObject:
   m_ObjectHideFlags: 0

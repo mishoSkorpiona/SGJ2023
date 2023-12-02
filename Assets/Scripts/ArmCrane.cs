@@ -80,6 +80,9 @@ public class ArmCrane : BaseArm
         heldObject.GetComponent<Rigidbody>().isKinematic = true;
 
         heldObject.transform.SetParent(craneHookPoint.transform, true);
+
+        heldObject.transform.localPosition = Vector3.zero;
+        heldObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
     }
 
     public virtual void DropObject()
@@ -87,7 +90,33 @@ public class ArmCrane : BaseArm
         if (!heldObject)
             return;
 
-        if (heldObject.CompareTag("Arm"))
+        bool isArm = heldObject.CompareTag("Arm");
+        if (isArm)
+        {
+            Collider[] hitColliders = Physics.OverlapSphere(heldObject.transform.position + transform.forward, 2.5f);
+            foreach (var hitCollider in hitColliders)
+            {
+                if (hitCollider.CompareTag("Enemy"))
+                {
+                    GameObject lArm = hitCollider.gameObject.transform.Find("lArmSocket").gameObject;
+                    if (lArm)
+                    {
+                        BaseArm baseArm = heldObject.GetComponent<BaseArm>();
+                        if (baseArm)
+                            baseArm.isArmLeft = true;
+
+                        heldObject.transform.SetParent(lArm.transform);
+                        heldObject.transform.localPosition = Vector3.zero;
+                        heldObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
+                        heldObject = null;
+                        return;
+                    }
+                }
+            }
+        }
+
+        ////////////////////////////////////////////////////
+        if (isArm)
         {
             heldObject.GetComponent<Collider>().isTrigger = false;
         }
