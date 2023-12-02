@@ -18,7 +18,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public bool inADetachZone;
 
     private BaseArm activeArm; // Assuming you have a BaseArm class
-    
+
+    private void Start()
+    {
+        Rigidbody player = this.GetComponent<Rigidbody>();
+        player.maxLinearVelocity = 5.0f;
+    }
 
     void Update()
     {
@@ -27,7 +32,8 @@ public class PlayerController : MonoBehaviour
 
         Rigidbody player = this.GetComponent<Rigidbody>();
         player.AddForce(movedirection * movespeed * Time.deltaTime, ForceMode.Acceleration);
-        this.transform.forward = movedirection;
+
+        transform.forward = Vector3.RotateTowards(transform.forward, movedirection, 0.03f, 0.0f);
     }
 
     void OnDetachArm()
