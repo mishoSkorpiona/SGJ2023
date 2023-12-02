@@ -1,3 +1,4 @@
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,7 +6,6 @@ public class ArmCrane : BaseArm
 {
     [SerializeField] private float moveSpeed = 5f;
     private Vector2 moveDir;
-    [SerializeField] private float armRange = 3;
     [SerializeField] private GameObject craneHookPoint;
     [SerializeField] private bool isAnchored = false;
 
@@ -15,7 +15,7 @@ public class ArmCrane : BaseArm
 
     void Update()
     {
-        //Move();
+        Move();
         ajustArm();
     }
 
@@ -81,25 +81,14 @@ public class ArmCrane : BaseArm
 
     public override void SecondaryMoveDir(Vector2 input)
     {
-        // Implementation for secondary move with the crane arm
-        if (!isAnchored)
-        {
-            moveDir = input;
-             moveDir = new Vector2(-moveDir.y, moveDir.x);
-        }
+        moveDir = input;
     }
 
     // Add or override other methods as needed
 
     private void Move()
     {
-        // add arm range & constrains 
-        if (craneHookPoint.transform.localPosition.magnitude < armRange)
-            craneHookPoint.transform.Translate(moveDir * moveSpeed * Time.deltaTime);
-        if (moveDir.magnitude < 0.05f)
-            craneHookPoint.transform.localPosition *= 0.95f;
-        if (craneHookPoint.transform.localPosition.y < -0.5f)
-            craneHookPoint.transform.localPosition.Set(0,-0.5f,0);
+        transform.localRotation = quaternion.Euler(Vector2.Angle(moveDir, Vector2.left),0,0);
     }
 
     private void DetectObjectInRange()

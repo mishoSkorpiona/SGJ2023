@@ -11,23 +11,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject camera;
 
     [SerializeField] private GameObject lArmSocket;
-    [SerializeField] private GameObject insLArmSocket;
-
-    [SerializeField] private Transform rArmSocket;
-    [SerializeField] private GameObject insRArmSocket;
+    [SerializeField] private GameObject rArmSocket;
 
     public bool inADetachZone;
 
     [SerializeField] private GameObject attachParticle;
 
-    [SerializeField ]private GameObject activeArm; // Assuming you have a BaseArm class
+    [SerializeField ]private GameObject activeArm; 
 
     private void Start()
     {
         Rigidbody player = this.GetComponent<Rigidbody>();
         player.maxLinearVelocity = 5.0f;
-        
-
     }
 
     void Update()
@@ -58,15 +53,17 @@ public class PlayerController : MonoBehaviour
         {
             if (hitCollider.CompareTag("DetachZone"))
             {
-                Instantiate(attachParticle, lArmSocket.transform);
-                Debug.Log("detach arm");
-                
-                // lArmSocket.transform.GetChild(0).GetComponent<BaseArm>().isTheArmInUse = false;
-                
-                
-                lArmSocket.transform.DetachChildren();
+                Detach(lArmSocket);
+                Detach(rArmSocket);
             }
         }
+    }
+
+    void Detach(GameObject Socket)
+    {
+        Instantiate(attachParticle, Socket.transform);
+        Debug.Log("detach arm");
+        Socket.transform.DetachChildren();
     }
 
     void OnAttatch()
@@ -85,7 +82,9 @@ public class PlayerController : MonoBehaviour
             {
                 if (hitCollider.GetComponent<BaseArm>().isTheArmInUse)
                     return;
+                
                 Instantiate(attachParticle, lArmSocket.transform);
+                
                 var newArm = hitCollider.gameObject;
                 newArm.transform.parent = lArmSocket.transform;
                 newArm.transform.localPosition = Vector3.zero;
