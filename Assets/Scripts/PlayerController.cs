@@ -6,7 +6,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float movespeed;
+    public float MoveSpeed = 700;
+    public float MaxLinearVelocity = 6;
+
     [SerializeField] private Vector3 movedirection;
     [SerializeField] private GameObject camera;
 
@@ -22,7 +24,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         Rigidbody player = this.GetComponent<Rigidbody>();
-        player.maxLinearVelocity = 5.0f;
+        player.maxLinearVelocity = MaxLinearVelocity;
     }
 
     void Update()
@@ -33,7 +35,14 @@ public class PlayerController : MonoBehaviour
             return;
 
         Rigidbody player = this.GetComponent<Rigidbody>();
-        player.AddForce(movedirection * movespeed * Time.deltaTime, ForceMode.Acceleration);
+        player.AddForce(movedirection * MoveSpeed * Time.deltaTime, ForceMode.Acceleration);
+
+        float minVelocity = 2.0f;
+        if (player.velocity.magnitude < minVelocity)
+        {
+            Debug.Log("min velocity correction!");
+            player.velocity = movedirection * minVelocity;
+        }
 
         transform.forward = Vector3.RotateTowards(transform.forward, movedirection, 0.03f, 0.0f);
     }
