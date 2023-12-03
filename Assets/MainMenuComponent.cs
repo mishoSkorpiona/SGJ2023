@@ -6,10 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuComponent : MonoBehaviour
 {
+    public GameObject Credits = null;
+    public GameObject StartButton = null;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        Credits.SetActive(false);
     }
 
     // Update is called once per frame
@@ -21,5 +24,19 @@ public class MainMenuComponent : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene("Scenes/IntroCinematic");
+    }
+
+    public void ToggleCredits()
+    {
+        //var credits = this.gameObject.Find("Credits").gameObject;
+        if (Credits)
+        {
+            Credits.SetActive(!Credits.activeSelf);
+        }
+
+        if (StartButton)
+        {
+            StartButton.SetActive(!Credits.activeSelf);
+        }
     }
 }
