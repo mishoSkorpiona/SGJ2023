@@ -68,6 +68,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TagRequired: 
+  LoadSceneName: 
   TeleporterExit: {fileID: 0}
   TeleportAudio: {fileID: 8300000, guid: f7d44c15d6490164190b8a297375fe53, type: 3}
 --- !u!82 &1577305704370103452
