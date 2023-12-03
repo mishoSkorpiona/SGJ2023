@@ -252,6 +252,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Steps:
+  - image: {fileID: 2800000, guid: 1da7118d1443daf47b939ec6d45cbea4, type: 3}
+    time: 6
   - image: {fileID: 2800000, guid: 838b1fa7005346b4f9e26b44fbb91763, type: 3}
     time: 6
   NextLevel: Scenes/MainMenu
