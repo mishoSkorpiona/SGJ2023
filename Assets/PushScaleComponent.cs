@@ -9,6 +9,7 @@ public class PushScaleComponent : MonoBehaviour
     public GameObject DoorToOpen = null;
     public int CountRequired = 2;
     public float OffsetFinal = -2.0f;
+    public AudioClip MoveScaleAudio = null;
 
     private float OffsetTarget = 0.0f;
     private int CountCurrent = 0;
@@ -24,6 +25,9 @@ public class PushScaleComponent : MonoBehaviour
         CountCurrent = count;
         float factor = (float)(CountCurrent) / (float)(CountRequired);
         OffsetTarget = OffsetFinal * factor;
+
+        if (MoveScaleAudio)
+            GetComponent<AudioSource>().PlayOneShot(MoveScaleAudio);
 
         if (DoorToOpen)
         {
