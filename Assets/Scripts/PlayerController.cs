@@ -24,7 +24,10 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private GameObject attachParticle;
 
-    [SerializeField ]private GameObject activeArm; 
+    [SerializeField ]private GameObject activeArm;
+
+    [SerializeField] private GameObject wheelL;
+    [SerializeField] private GameObject wheelR;
 
     private void Start()
     {
@@ -41,18 +44,29 @@ public class PlayerController : MonoBehaviour
 
         Rigidbody player = this.GetComponent<Rigidbody>();
         player.AddForce(movedirection * MoveSpeed * Time.deltaTime, ForceMode.Acceleration);
-
+         
+        ApplyWheelRotation(player);
         float minVelocity = 2.0f;
         if (player.velocity.magnitude < minVelocity)
         {
+            
             Debug.Log("min velocity correction!");
             player.velocity = movedirection * minVelocity;
+            
         }
 
         transform.forward = Vector3.RotateTowards(transform.forward, movedirection, 0.03f, 0.0f);
     }
 
-    
+    void ApplyWheelRotation(Rigidbody player)
+    {
+        Debug.Log("vurti kolelata");
+        wheelL.transform.Rotate(new Vector3(30 * player.velocity.magnitude * Time.deltaTime,0,0));
+        wheelR.transform.Rotate(new Vector3(30 * player.velocity.magnitude * Time.deltaTime,0,0));
+
+    }
+
+
     void OnSecondaryMove(InputValue input)
     {
         var secondaryMoveDirection = input.Get<Vector2>();
