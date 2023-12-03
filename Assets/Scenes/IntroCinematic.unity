@@ -252,12 +252,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Steps:
-  - image: {fileID: 2800000, guid: 136fe09276adb0c4d8deac0a1635fe81, type: 3}
-    time: 2
-  - image: {fileID: 2800000, guid: 77b8193c255d6864f89e1218687a4529, type: 3}
-    time: 2
-  - image: {fileID: 2800000, guid: 136fe09276adb0c4d8deac0a1635fe81, type: 3}
-    time: 2
+  - image: {fileID: 2800000, guid: bc5672e7425c5ea49a01786ce75a13cb, type: 3}
+    time: 3
+  - image: {fileID: 2800000, guid: abf87486d9bb49c4e8fa503a62e06e1a, type: 3}
+    time: 3
+  - image: {fileID: 2800000, guid: a452625de18e6274f9cccc66e422b352, type: 3}
+    time: 4
+  - image: {fileID: 2800000, guid: 6cd8903ac30d3414f8bac5e5e629218d, type: 3}
+    time: 5
+  - image: {fileID: 2800000, guid: a65e4b5d389538745a4def4fb84f204b, type: 3}
+    time: 3
+  - image: {fileID: 2800000, guid: 95f7d875d4f88df4c8d3ed4516004c37, type: 3}
+    time: 5
+  - image: {fileID: 2800000, guid: ed598505f20edab488d861e45e270945, type: 3}
+    time: 3
+  - image: {fileID: 2800000, guid: 12ebbdae1084afb4ea46389b1321f4e3, type: 3}
+    time: 3
+  - image: {fileID: 2800000, guid: d6ceea03c038c7a4788037a8c85e460c, type: 3}
+    time: 5
+  - image: {fileID: 2800000, guid: 13f95f55d2e5fc74994d0413c1cf815b, type: 3}
+    time: 3
+  - image: {fileID: 2800000, guid: 22fef53ad1e59854cb1c40e2994ffaf6, type: 3}
+    time: 4
   NextLevel: Scenes/Level1
 --- !u!114 &247956969
 MonoBehaviour:
