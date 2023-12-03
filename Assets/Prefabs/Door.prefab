@@ -321,7 +321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EndHeight: -1.1
-  OpenAudio: {fileID: 0}
+  OpenAudio: {fileID: 8300000, guid: bd44592760b15ff4d83360fd1f721d11, type: 3}
 --- !u!82 &-3664097302817287884
 AudioSource:
   m_ObjectHideFlags: 0
