@@ -20,6 +20,6 @@ public class MainMenuComponent : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("Scenes/Level1");
+        SceneManager.LoadScene("Scenes/IntroCinematic");
     }
 }
