@@ -6,6 +6,7 @@ public class ButtonComponent : MonoBehaviour
 {
     public string TagRequired = null;
     public GameObject DoorToOpen = null;
+    public AudioClip PressAudio = null;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,9 @@ public class ButtonComponent : MonoBehaviour
             if (!other.CompareTag(TagRequired))
                 return;
         }
+
+        if (PressAudio)
+            GetComponent<AudioSource>().PlayOneShot(PressAudio);
 
         if (DoorToOpen)
         {

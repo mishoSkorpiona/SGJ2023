@@ -9,6 +9,11 @@ public class PlayerController : MonoBehaviour
     public float MoveSpeed = 700;
     public float MaxLinearVelocity = 6;
 
+    public AudioClip AttachArmAudio = null;
+    public AudioClip DettachArmAudio = null;
+    public AudioClip PickObjectAudio = null;
+    public AudioClip DropObjectAudio = null;
+
     [SerializeField] private Vector3 movedirection;
     [SerializeField] private GameObject camera;
 
@@ -96,6 +101,9 @@ public class PlayerController : MonoBehaviour
         Instantiate(attachParticle, Socket.transform);
         Debug.Log("detach arm");
         Socket.transform.DetachChildren();
+
+        if (DettachArmAudio)
+            GetComponent<AudioSource>().PlayOneShot(DettachArmAudio);
         return true;
     }
 
@@ -156,6 +164,10 @@ public class PlayerController : MonoBehaviour
             }
 
             Debug.Log("We got an active arm ");
+
+            if (AttachArmAudio)
+                GetComponent<AudioSource>().PlayOneShot(AttachArmAudio);
+            
             break;
         }
     }
@@ -178,6 +190,18 @@ public class PlayerController : MonoBehaviour
             Debug.Log("nqmash ruki brat");
             return;
         }
-        activeArm.GetComponent<BaseArm>().UseArm();
+
+        int action = activeArm.GetComponent<BaseArm>().UseArm();
+
+        if (action == 1)
+        {
+            if (DropObjectAudio)
+                GetComponent<AudioSource>().PlayOneShot(DropObjectAudio);
+        }
+        else if (action == 2)
+        {
+            if (PickObjectAudio)
+                GetComponent<AudioSource>().PlayOneShot(PickObjectAudio);
+        }
     }
 }

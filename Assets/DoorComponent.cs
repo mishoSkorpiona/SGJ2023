@@ -13,6 +13,7 @@ public class DoorComponent : MonoBehaviour
     private float TargetFactor = 1.0f;
     private float StartHeight = 0.0f;
     public float EndHeight = -1.0f;
+    public AudioClip OpenAudio = null;
 
     public void Open()
     {
@@ -26,6 +27,9 @@ public class DoorComponent : MonoBehaviour
         ShouldOpen = true;
         UseLinearEase = true;
         TargetFactor = targetFactor;
+
+        if (OpenAudio)
+            GetComponent<AudioSource>().PlayOneShot(OpenAudio);
     }
 
     void Start()

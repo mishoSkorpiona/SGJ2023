@@ -6,7 +6,7 @@ public abstract class BaseArm : MonoBehaviour, IArm
     protected GameObject heldObject;
     public bool isTheArmInUse;
     public bool isArmLeft;
-    public abstract void UseArm();
+    public abstract int UseArm();
 
     public abstract void SecondaryMoveDir(Vector2 input);
 

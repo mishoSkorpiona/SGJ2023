@@ -19,13 +19,14 @@ public class ArmCrane : BaseArm
         AdjustArm();
     }
 
-    public override void UseArm()
+    public override int UseArm()
     {
         Debug.Log("Using Crane Arm");
         if (heldObject != null)
         {
             Debug.Log("dropobject");
             DropObject();
+            return 1;
         }
         else
         {
@@ -36,7 +37,7 @@ public class ArmCrane : BaseArm
                 {
                     GrabObject(hitCollider.gameObject);
                     Debug.Log("Pickup crate");
-                    break;
+                    return 2;
                 }
                 
                 if (hitCollider.CompareTag("Arm"))
@@ -48,10 +49,12 @@ public class ArmCrane : BaseArm
                     
                     GrabObject(hitCollider.gameObject);
                     Debug.Log("Pickup arm");
-                    break;
+                    return 2;
                 }
             }
         }
+
+        return 0;
     }
 
     void AdjustArm()

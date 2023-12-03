@@ -6,6 +6,7 @@ public class TeleporterEnterComponent : MonoBehaviour
 {
     public string TagRequired = null;
     public GameObject TeleporterExit = null;
+    public AudioClip TeleportAudio = null;
 
     void Start()
     {
@@ -30,5 +31,8 @@ public class TeleporterEnterComponent : MonoBehaviour
             return;
 
         other.transform.SetPositionAndRotation(TeleporterExit.transform.position, other.transform.rotation);
+
+        if (TeleportAudio)
+            GetComponent<AudioSource>().PlayOneShot(TeleportAudio);
     }
 }

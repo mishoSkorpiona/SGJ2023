@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public interface IArm
 {
-    void UseArm();
+    int UseArm();
     void SecondaryMoveDir(Vector2 input);
     void GrabObject(GameObject obj);
     void DropObject();
