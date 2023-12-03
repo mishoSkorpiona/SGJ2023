@@ -4466,6 +4466,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DetachZone
       objectReference: {fileID: 0}
+    - target: {fileID: 3282334884550169937, guid: f93c440ff3a76444f8c9b0a17c939e6b,
+        type: 3}
+      propertyPath: LightsModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6513516310606438014, guid: f93c440ff3a76444f8c9b0a17c939e6b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4514,6 +4519,21 @@ PrefabInstance:
     - target: {fileID: 6513516310606438014, guid: f93c440ff3a76444f8c9b0a17c939e6b,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6743136027542323874, guid: f93c440ff3a76444f8c9b0a17c939e6b,
+        type: 3}
+      propertyPath: LightsModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7965053116471214098, guid: f93c440ff3a76444f8c9b0a17c939e6b,
+        type: 3}
+      propertyPath: LightsModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7985025494615090312, guid: f93c440ff3a76444f8c9b0a17c939e6b,
+        type: 3}
+      propertyPath: LightsModule.enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
