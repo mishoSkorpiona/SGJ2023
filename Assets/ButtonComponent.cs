@@ -7,6 +7,9 @@ public class ButtonComponent : MonoBehaviour
     public string TagRequired = null;
     public GameObject DoorToOpen = null;
     public AudioClip PressAudio = null;
+    public bool ActivateOnce = false;
+
+    private bool ActivatedOnce = false;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +25,11 @@ public class ButtonComponent : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (ActivateOnce && ActivatedOnce)
+        {
+            return;
+        }
+
         if (TagRequired != null && TagRequired.Length > 0)
         {
             if (!other.CompareTag(TagRequired))
@@ -39,5 +47,7 @@ public class ButtonComponent : MonoBehaviour
                 door.Open();
             }
         }
+
+        ActivatedOnce = true;
     }
 }
