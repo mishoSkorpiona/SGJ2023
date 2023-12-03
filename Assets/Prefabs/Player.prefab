@@ -277,10 +277,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSpeed: 500
   MaxLinearVelocity: 4
-  AttachArmAudio: {fileID: 8300000, guid: fed6472fbeeae434ea80c2a1bcf7e4ca, type: 3}
-  DettachArmAudio: {fileID: 8300000, guid: b4f8febe62d03b346b8d14cf01f567d7, type: 3}
-  PickObjectAudio: {fileID: 8300000, guid: 6529faf01eb43c64a8acdcf74530b2ae, type: 3}
-  DropObjectAudio: {fileID: 8300000, guid: 5ce9d19e1ca0f74418a491c382147216, type: 3}
+  AttachArmAudio: {fileID: 0}
+  DettachArmAudio: {fileID: 0}
+  PickObjectAudio: {fileID: 8300000, guid: 5ce9d19e1ca0f74418a491c382147216, type: 3}
+  DropObjectAudio: {fileID: 0}
   movedirection: {x: 0, y: 0, z: 0}
   camera: {fileID: 0}
   lArmSocket: {fileID: 1394039528049449258}
