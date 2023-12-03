@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TeleporterEnterComponent : MonoBehaviour
 {
     public string TagRequired = null;
+    public string LoadSceneName = null;
     public GameObject TeleporterExit = null;
     public AudioClip TeleportAudio = null;
 
@@ -27,12 +29,16 @@ public class TeleporterEnterComponent : MonoBehaviour
                 return;
         }
 
-        if (!TeleporterExit)
-            return;
+        if (TeleporterExit)
+        {
+            other.transform.SetPositionAndRotation(TeleporterExit.transform.position, other.transform.rotation);
 
-        other.transform.SetPositionAndRotation(TeleporterExit.transform.position, other.transform.rotation);
-
-        if (TeleportAudio)
-            GetComponent<AudioSource>().PlayOneShot(TeleportAudio);
+            if (TeleportAudio)
+                GetComponent<AudioSource>().PlayOneShot(TeleportAudio);
+        }
+        else if (LoadSceneName != null && LoadSceneName.Length > 0)
+        {
+            SceneManager.LoadScene(LoadSceneName);
+        }
     }
 }
