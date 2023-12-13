@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 
 public class ArmCrane : BaseArm
 {
-    [SerializeField] private float moveSpeed = 5f;
     private Vector2 moveDir;
     [SerializeField] private GameObject craneHookPoint;
     [SerializeField] private bool isAnchored = false;
@@ -72,7 +71,7 @@ public class ArmCrane : BaseArm
     }
 
 
-    public virtual void GrabObject(GameObject obj)
+    public override void GrabObject(GameObject obj)
     {
         heldObject = obj;
 
@@ -88,7 +87,7 @@ public class ArmCrane : BaseArm
         heldObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
     }
 
-    public virtual void DropObject()
+    public override void DropObject()
     {
         if (!heldObject)
             return;

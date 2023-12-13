@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public float MoveSpeed = 700;
+    [SerializeField]private float rotationSpeed = 0.03f; // Adjust this value to control the rotation speed
+
     public float MaxLinearVelocity = 6;
 
     public AudioClip AttachArmAudio = null;
@@ -54,8 +56,9 @@ public class PlayerController : MonoBehaviour
             player.velocity = movedirection * minVelocity;
             
         }
-
-        transform.forward = Vector3.RotateTowards(transform.forward, movedirection, 0.03f, 0.0f);
+        
+        float step = rotationSpeed * Time.deltaTime;
+        transform.forward = Vector3.RotateTowards(transform.forward, movedirection, step, 0.0f);
     }
 
     void ApplyWheelRotation(Rigidbody player)
