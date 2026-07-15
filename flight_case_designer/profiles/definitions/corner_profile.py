@@ -6,6 +6,9 @@ def CornerProfile() -> ProfileDefinition:
     t = 0.003
     l = 0.025
 
+    # Corner profile: outer L-shape with inner lip.
+    # The polygon is closed by the sweep helper — last vertex must not
+    # duplicate the first vertex.
     cross_section = [
         (0,   0),
         (l,   0),
@@ -16,7 +19,6 @@ def CornerProfile() -> ProfileDefinition:
         (-t,  l),
         (-t,  -t),
         (l,   -t),
-        (l,    0),
     ]
     return ProfileDefinition(
         name="CORNER",

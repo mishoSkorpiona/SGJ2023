@@ -16,6 +16,9 @@ from .keyboard_case import KeyboardCase
 from .custom_box import CustomBox
 
 
+# Maps CaseSettings.case_type enum identifiers → template class.
+# The enum keys use SCREAMING_SNAKE_CASE to match Blender's EnumProperty
+# convention; template classes use CamelCase + "Template" suffix.
 _REGISTRY: dict[str, type[BaseTemplate]] = {
     "LIFT_OFF_LID":   LiftOffLidTemplate,
     "HINGED_LID":     HingedLidTemplate,
