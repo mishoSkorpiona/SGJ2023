@@ -230,16 +230,24 @@ def extrude_profile_along_path(
     path_start: Vector,
     path_end: Vector,
     material: bpy.types.Material | None = None,
-) -> bpy.types.Object:
+) -> "bpy.types.Object | None":
     """
     Extrude a 2-D cross section (XY) along a straight path (path_start → path_end).
 
     The path direction replaces the local Z axis of the extrusion.
+
+    Returns
+    -------
+    bpy.types.Object
+        The newly created mesh object.
+    None
+        Returned when the path is degenerate (length < 1e-9 m).  Callers
+        must check the return value before using it.
     """
     path_vec = path_end - path_start
     length = path_vec.length
     if length < 1e-9:
-        return None  # degenerate
+        return None  # degenerate – caller should handle None
 
     mesh = bpy.data.meshes.new(name)
     bm = bmesh.new()

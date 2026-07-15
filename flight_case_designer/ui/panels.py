@@ -78,7 +78,8 @@ class FCD_PT_main(Panel):
             col = box.column(align=True)
             col.label(text=f"External: {dims.ext_w*1000:.0f} × {dims.ext_d*1000:.0f} × {dims.ext_h*1000:.0f} mm", icon="CUBE")
             col.label(text=f"Est. Total Weight: {dims.total_weight():.1f} kg",  icon="EMPTY_AXIS")
-        except Exception:
+        except (AttributeError, ValueError, ZeroDivisionError):
+            # Properties may not be fully initialised on first draw; skip silently.
             pass
 
 
@@ -371,7 +372,8 @@ class FCD_PT_manufacturing(Panel):
             col.label(text=f"Profiles: {len(profiles)} cuts ({_profile_total_m(profiles):.2f} m)")
             col.label(text=f"Plywood: {dims.ply_weight:.2f} kg")
             col.label(text=f"Total weight: {dims.total_weight():.2f} kg")
-        except Exception:
+        except (AttributeError, ValueError, ZeroDivisionError):
+            # Properties may not be fully initialised on first draw; skip silently.
             pass
 
         # Cost estimate toggle

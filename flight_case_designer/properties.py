@@ -126,7 +126,9 @@ def _rebuild_timer() -> None:
     if ctx.area is not None:
         try:
             bpy.ops.fcd.rebuild_case()
-        except Exception:  # noqa: BLE001
+        except (RuntimeError, AttributeError):
+            # Operator may be unavailable in certain contexts (e.g. modal ops
+            # active, wrong area type).  Silently skip rather than raising.
             pass
     return None  # returning None cancels the timer
 
@@ -236,7 +238,14 @@ class FCD_EquipmentProperties(PropertyGroup):
 
     @property
     def uniform_foam(self) -> float:
-        """Return average foam thickness for quick calculations."""
+        """
+        Return the arithmetic mean of all six per-face foam thicknesses (in mm).
+
+        Useful as a quick single-value summary when ``asymmetric_foam`` is
+        ``False``, or as an approximation when it is ``True``.  The value is
+        in the same unit as the individual foam properties (millimetres) and
+        does **not** apply the compression factor.
+        """
         return (
             self.foam_top + self.foam_bottom
             + self.foam_left + self.foam_right

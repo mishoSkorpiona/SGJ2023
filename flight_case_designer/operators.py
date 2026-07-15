@@ -302,16 +302,24 @@ def _props_to_dict(props) -> dict:
 
 def _dict_to_props(data: dict, props) -> None:
     """Deserialise a plain dict into FCD_SceneProperties."""
-    def _apply(pg, src: dict):
+    import logging
+    _log = logging.getLogger(__name__)
+
+    def _apply(pg, src: dict, group_name: str) -> None:
         for key, val in src.items():
             try:
                 setattr(pg, key, val)
-            except (AttributeError, TypeError):
-                pass
+            except (AttributeError, TypeError, ValueError) as exc:
+                # Log but do not abort: unknown or incompatible keys are
+                # skipped so that presets from older add-on versions still load.
+                _log.warning(
+                    "[FCD] Preset: could not set '%s.%s' = %r: %s",
+                    group_name, key, val, exc,
+                )
 
     for group_name in ("equipment", "case", "foam", "hardware", "manufacturing"):
         if group_name in data:
-            _apply(getattr(props, group_name), data[group_name])
+            _apply(getattr(props, group_name), data[group_name], group_name)
 
 
 # ---------------------------------------------------------------------------
