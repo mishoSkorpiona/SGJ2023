@@ -1,0 +1,28 @@
+{
+  "project_name": "19-inch 4U Rack",
+  "case_type": "RACK_CASE",
+  "rack_units": 4,
+  "equipment": {
+    "width": 482.6,
+    "depth": 300.0,
+    "height": 177.8,
+    "weight": 10.0,
+    "orientation": "HORIZONTAL",
+    "cable_clearance": 80.0,
+    "connector_clearance": 20.0,
+    "internal_clearance": 5.0,
+    "air_gap": 10.0
+  },
+  "material": {
+    "plywood_thickness": "9",
+    "plywood_type": "BIRCH"
+  },
+  "hardware": {
+    "rack_rails": true,
+    "butterfly_latches": false,
+    "spring_handles": true,
+    "ball_corners": true,
+    "casters": false,
+    "rubber_feet": true
+  }
+}
