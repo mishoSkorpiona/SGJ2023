@@ -1,0 +1,17 @@
+{
+  "plywood": [
+    {"id": "6mm_birch",    "thickness": 6,  "type": "BIRCH",    "density_kgm3": 650},
+    {"id": "7mm_birch",    "thickness": 7,  "type": "BIRCH",    "density_kgm3": 650},
+    {"id": "9mm_birch",    "thickness": 9,  "type": "BIRCH",    "density_kgm3": 680},
+    {"id": "12mm_birch",   "thickness": 12, "type": "BIRCH",    "density_kgm3": 680},
+    {"id": "9mm_phenolic", "thickness": 9,  "type": "PHENOLIC", "density_kgm3": 730},
+    {"id": "12mm_phenolic","thickness": 12, "type": "PHENOLIC", "density_kgm3": 730},
+    {"id": "12mm_mdf",     "thickness": 12, "type": "MDF",      "density_kgm3": 750}
+  ],
+  "foam": [
+    {"id": "eva_30",  "type": "EVA", "density_kgm3": 30},
+    {"id": "pe_30",   "type": "PE",  "density_kgm3": 30},
+    {"id": "pu_25",   "type": "PU",  "density_kgm3": 25},
+    {"id": "pe_50",   "type": "PE",  "density_kgm3": 50}
+  ]
+}

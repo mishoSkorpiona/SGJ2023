@@ -1,0 +1,38 @@
+{
+  "sets": [
+    {
+      "name": "Standard Touring",
+      "butterfly_latches": true,
+      "spring_handles": true,
+      "ball_corners": true,
+      "cast_corners": false,
+      "hinges": false,
+      "rubber_feet": true,
+      "casters": false,
+      "rack_rails": false,
+      "stacking_cups": false,
+      "label_holders": true
+    },
+    {
+      "name": "Heavy Duty",
+      "butterfly_latches": true,
+      "spring_handles": true,
+      "ball_corners": false,
+      "cast_corners": true,
+      "hinges": false,
+      "rubber_feet": false,
+      "casters": true,
+      "rack_rails": false,
+      "stacking_cups": true,
+      "label_holders": true
+    },
+    {
+      "name": "Rack Case",
+      "butterfly_latches": true,
+      "spring_handles": true,
+      "ball_corners": true,
+      "rack_rails": true,
+      "rubber_feet": true
+    }
+  ]
+}
